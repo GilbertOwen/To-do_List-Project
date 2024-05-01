@@ -2,6 +2,7 @@ export default async function Introduce() {
   const introduce = {
     
     title : 'Easy To Maintain Work',
+    app : "Wha'do",
     description:
       '"Introducing our innovative To-Do List Application, the ultimate productivity tool designed to streamline your daily tasks."',
   };
