@@ -20,7 +20,7 @@ export default async function Introduce() {
         </div>
         <div className="relative ml-auto md:mt-4 group md:hover:w-[100%] lg:mt-14 md:rounded-l-full transition-all flex md:pl-20 pl-4 pr-4 py-8 md:py-4 md:pr-4 flex-col justify-center items-center w-full md:w-[90%] lg:w-[80%] h-[80%] bg-[#DAC0A3]">
           <span className="md:group-hover:opacity-100 opacity-0 text-5xl font-semibold text-[#102C57] absolute top-10 transition-all">
-            Wha'do
+            {introduce.app}
           </span>
           <p className="font-semibold text-[#102C57] text-center text-lg lg:text-2xl xl:text-3xl">
             {introduce.description}
