@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <div className="w-full flex flex-col pt-32 items-center h-full min-h-[768px]">
+    <div className="w-full flex flex-col pt-24 md:pt-32 pb-28 items-center h-fit">
       <div className="flex flex-col justify-center items-center w-[90%] lg:w-[82%] text-center">
         <h1 className="text-5xl ssm:text-6xl hover:translate-y-[-5px] text-[#102C57] sm:text-7xl md:text-8xl font-semibold mb-6 sm:mb-8 w-full transition-all">
           HALO!
