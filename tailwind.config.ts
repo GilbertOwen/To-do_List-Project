@@ -33,7 +33,19 @@ const config: Config = {
 
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
-    }
+    },
+    keyframes:{
+      boing: {
+        '0%' : { scale : '1' },
+        '30%' : {scale : '1.1'},
+        '60%' : {scale: '1.05'},
+        '90%' : {scale: '1.07'},
+        '100%' : {scale: '1.05'}
+      }
+    },
+    animation: {
+      'boing-boing': 'boing 0.5s ease-in forwards',
+    },
   },
   plugins: [],
 };
