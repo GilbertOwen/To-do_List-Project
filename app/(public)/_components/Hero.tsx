@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <div className="scroll-smooth snap-always snap-center w-full flex flex-col md:justify-start justify-center pt-24 md:pt-36 pb-28 items-center h-screen md:h-fit relative">
+    <div className="scroll-smooth snap-always snap-center w-full flex flex-col md:justify-start justify-center md:pt-24 lg:pt-32 md:pb-28 items-center h-screen md:h-fit relative overflow-hidden">
       <div className="bg-[#EADBC8] w-full absolute h-full top-0 z-[-10]"></div>
       <div className="flex flex-col justify-center items-center w-[90%] lg:w-[82%] text-center">
         <h1 className="text-5xl ssm:text-6xl hover:translate-y-[-5px] text-[#102C57] sm:text-7xl md:text-8xl font-semibold mb-6 sm:mb-8 w-full transition-all">
