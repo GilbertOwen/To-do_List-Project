@@ -2,7 +2,8 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <div className="w-full flex flex-col pt-24 md:pt-32 pb-28 items-center h-fit">
+    <div className="scroll-smooth snap-always snap-center w-full flex flex-col md:justify-start justify-center pt-24 md:pt-36 pb-28 items-center h-screen md:h-fit relative">
+      <div className="bg-[#EADBC8] w-full absolute h-full top-0 z-[-10]"></div>
       <div className="flex flex-col justify-center items-center w-[90%] lg:w-[82%] text-center">
         <h1 className="text-5xl ssm:text-6xl hover:translate-y-[-5px] text-[#102C57] sm:text-7xl md:text-8xl font-semibold mb-6 sm:mb-8 w-full transition-all">
           HALO!
@@ -14,7 +15,7 @@ export default function Hero() {
           <div className="group">
             <Link
               href={"/login"}
-              className="group-hover:-rotate-[15deg] flex flex-col origin-bottom-left w-[80px] h-[80px] xs:w-[120px] xs:h-[120px] ssm:w-[150px] ssm:h-[150px] group-hover:text-[#102C57] sm:w-[170px] sm:h-[170px] md:h-[200px] md:w-[200px] lg:h-[250px] lg:w-[250px] bg-[#FEFAF6] shadow-md border-none select-none justify-center items-center text-xl xs:text-3xl ssm:text-4xl md:text-5xl transition-all"
+              className="group-hover:-rotate-[15deg] rounded-md font-medium flex flex-col origin-bottom-left w-[80px] h-[80px] xs:w-[120px] xs:h-[120px] ssm:w-[150px] ssm:h-[150px] group-hover:text-opacity-100 text-opacity-50 text-[#DAC0A3] sm:w-[170px] sm:h-[170px] md:h-[200px] md:w-[200px] lg:h-[250px] lg:w-[250px] bg-[#FEFAF6] shadow-md border-none select-none justify-center items-center text-xl xs:text-3xl ssm:text-4xl md:text-5xl transition-all"
             >
               Try
             </Link>
@@ -22,7 +23,7 @@ export default function Hero() {
           <div className="group">
             <Link
               href={"/login"}
-              className="group-hover:-translate-y-10 flex flex-col origin-bottom-left w-[80px] h-[80px] xs:w-[120px] xs:h-[120px] ssm:w-[150px] ssm:h-[150px] group-hover:text-[#102C57] sm:w-[170px] sm:h-[170px] md:h-[200px] md:w-[200px] lg:h-[250px] lg:w-[250px] bg-[#FEFAF6] shadow-md border-none select-none justify-center items-center text-xl xs:text-3xl ssm:text-4xl md:text-5xl transition-all"
+              className="group-hover:-translate-y-10 rounded-md font-medium flex flex-col origin-bottom-left w-[80px] h-[80px] xs:w-[120px] xs:h-[120px] ssm:w-[150px] ssm:h-[150px] group-hover:text-opacity-100 text-opacity-50 text-[#DAC0A3] sm:w-[170px] sm:h-[170px] md:h-[200px] md:w-[200px] lg:h-[250px] lg:w-[250px] bg-[#FEFAF6] shadow-md border-none select-none justify-center items-center text-xl xs:text-3xl ssm:text-4xl md:text-5xl transition-all"
             >
               Our
             </Link>
@@ -30,13 +31,15 @@ export default function Hero() {
           <div className="group">
             <Link
               href={"/login"}
-              className="group-hover:rotate-[15deg] flex flex-col origin-bottom-right w-[80px] h-[80px] xs:w-[120px] xs:h-[120px] ssm:w-[150px] ssm:h-[150px] group-hover:text-[#102C57] sm:w-[170px] sm:h-[170px] md:h-[200px] md:w-[200px] lg:h-[250px] lg:w-[250px] bg-[#FEFAF6] shadow-md border-none select-none justify-center items-center text-xl xs:text-3xl ssm:text-4xl md:text-5xl transition-all"
+              className="group-hover:rotate-[15deg] rounded-md font-medium flex flex-col origin-bottom-right w-[80px] h-[80px] xs:w-[120px] xs:h-[120px] ssm:w-[150px] ssm:h-[150px] group-hover:text-opacity-100 text-opacity-50 text-[#DAC0A3] sm:w-[170px] sm:h-[170px] md:h-[200px] md:w-[200px] lg:h-[250px] lg:w-[250px] bg-[#FEFAF6] shadow-md border-none select-none justify-center items-center text-xl xs:text-3xl ssm:text-4xl md:text-5xl transition-all"
             >
               App
             </Link>
           </div>
         </div>
-        <p className="text-[12px] md:text-lg lg:text-xl opacity-60 ">Click to go to sign in page</p>
+        <p className="text-[12px] text-[#EADBC8] md:text-lg lg:text-xl opacity-90">
+          Click to go to sign in page
+        </p>
       </div>
     </div>
   );

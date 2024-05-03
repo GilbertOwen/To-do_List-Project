@@ -9,7 +9,7 @@ export default async function Introduce() {
   return (
     <section
       id="introduce"
-      className="h-fit w-full pb-24 flex flex-col gap-y-10 md:gap-y-20"
+      className="h-fit w-full py-24 snap-always snap-center flex flex-col gap-y-10 md:gap-y-20"
     >
       <h1 className="text-3xl sm:text-4xl md:text-5xl text-center font-semibold text-[#102C57]">
       {introduce.title}

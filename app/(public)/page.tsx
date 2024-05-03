@@ -5,10 +5,10 @@ import Benefits from "./_components/Benefits";
 
 export default async function HomePage() {
   return (
-    <Fragment>
-      <Hero></Hero>
-      <Introduce></Introduce>
-      <Benefits></Benefits>
-    </Fragment>
+      <div className="snap-y snap-mandatory overflow-y-scroll h-screen">
+        <Hero></Hero>
+        <Introduce></Introduce>
+        <Benefits></Benefits>
+      </div>
   );
 }
