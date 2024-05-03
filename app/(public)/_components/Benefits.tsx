@@ -39,7 +39,7 @@ export default function Benefit() {
   return (
     <section
       id="benefits"
-      className="h-fit w-full gap-y-4 md:gap-y-10 pb-24 px-6 md:px-10 lg:px-20 flex flex-col items-center"
+      className="snap-always snap-center h-fit w-full pt-12 gap-y-4 md:gap-y-10 pb-24 px-6 md:px-10 lg:px-20 flex flex-col items-center"
     >
       {/* <div className=" gap-y-4 flex flex-col"> */}
       <h1 className="text-3xl sm:text-4xl md:text-5xl text-center font-semibold text-[#102C57]">
