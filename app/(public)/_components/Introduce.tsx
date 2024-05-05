@@ -51,46 +51,7 @@ export default function Introduce() {
         <div className="md:pl-6">
           <img src="/easy-maintain.png" alt="" />
         </div>
-        <div className="relative ml-auto md:mt-4 group md:hover:w-[100%] lg:mt-14 md:rounded-l-full transition-all flex md:pl-20 pl-4 pr-4 py-8 md:py-4 md:pr-4 flex-col justify-center items-center w-full md:w-[90%] lg:w-[80%] h-[80%] bg-[#DAC0A3]">
-          <span className="md:group-hover:opacity-100 opacity-0 text-5xl font-semibold text-[#102C57] absolute top-10 transition-all">
-            {introduce.app}
-          </span>
-          <p className="font-semibold text-[#102C57] text-center text-lg lg:text-2xl xl:text-3xl">
-            {introduce.description}
-          </p>
-        </div>
-      </motion.div>
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 place-content-center gap-y-4">
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 100,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-            transition: {
-              delay: 1,
-              duration: 0.8,
-            },
-          }}
-          className="md:pl-6"
-        >
-          <img src="/easy-maintain.png" alt="" />
-        </motion.div>
-        <motion.div
-          initial={{
-            opacity: 0,
-            y:100,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-            transition: {
-              delay: 1.8,
-              duration: 0.6,
-            },
-          }}
+        <div
           className="relative ml-auto md:mt-4 group md:hover:w-[100%] lg:mt-14 md:rounded-l-full transition-all flex md:pl-20 pl-4 pr-4 py-8 md:py-4 md:pr-4 flex-col justify-center items-center w-full md:w-[90%] lg:w-[80%] h-[80%] bg-[#DAC0A3]"
         >
           <span className="md:group-hover:opacity-100 opacity-0 text-5xl font-semibold text-[#102C57] absolute top-10 transition-all">
@@ -99,8 +60,8 @@ export default function Introduce() {
           <p className="font-semibold text-[#102C57] text-center text-lg lg:text-2xl xl:text-3xl">
             {introduce.description}
           </p>
-        </motion.div>
-      </div> */}
+        </div>
+      </motion.div>
     </section>
   );
 }
