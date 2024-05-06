@@ -29,7 +29,7 @@ export default function Hero() {
             translateY: -5,
             transition: { duration: 0.1 },
           }}
-          className="greeting-hero text-5xl ssm:text-6xl hover:translate-y-[-5px] text-[#102C57] translate-y-0 sm:text-7xl md:text-8xl font-semibold mb-6 sm:mb-8 w-full transition-all"
+          className="greeting-hero text-5xl ssm:text-6xl hover:translate-y-[-5px] text-[#102C57] translate-y-0 sm:text-7xl md:text-8xl font-semibold mb-6 sm:mb-8 w-fit transition-all"
         >
           HALO!
         </motion.h1>
