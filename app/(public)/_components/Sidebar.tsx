@@ -15,7 +15,9 @@ export default function Sidebar() {
     };
   }, [isOpen]);
   const handleClickOutside = (e: MouseEvent) => {
-    const sidebar: HTMLElement = document.getElementById("sidebar") as HTMLElement;
+    const sidebar: HTMLElement = document.getElementById(
+      "sidebar"
+    ) as HTMLElement;
     if (sidebar && !sidebar.contains(e.target as Node)) {
       setIsOpen(false);
     }
@@ -48,18 +50,27 @@ export default function Sidebar() {
 
       <nav
         id="sidebar"
-        className={`bg-[#DAC0A3] flex flex-col p-2 z-30 fixed top-20 md:top-24 md:left-8 left-4 rounded-sm shadow-md ${
-          isOpen ? "left-8 opacity-1" : "left-[-200px] opacity-0"
+        className={`bg-[#DAC0A3] flex flex-col p-2 z-30 top-20 md:top-24 fixed rounded-sm shadow-md ${
+          isOpen ? "left-4  md:left-8 opacity-1" : "left-[-200px] opacity-0"
         } duration-500 ease-in-out`}
       >
-        <Link href={'/auth-to-do'} className="text-xl font-semibold text-[#EADBC8] bg-[#DAC0A3] hover:text-[#102C57] hover:bg-[#EADBC8] duration-200 ease-in-out w-full h-full px-4 py-1">
-            Login
+        <Link
+          href={"/auth-to-do"}
+          className="text-xl font-semibold text-[#EADBC8] bg-[#DAC0A3] hover:text-[#102C57] hover:bg-[#EADBC8] duration-200 ease-in-out w-full h-full px-4 py-1"
+        >
+          Login
         </Link>
-        <Link href={'/home'} className="text-xl font-semibold text-[#EADBC8] bg-[#DAC0A3] hover:text-[#102C57] hover:bg-[#EADBC8] duration-200 ease-in-out w-full h-full px-4 py-1">
-            Home
+        <Link
+          href={"/"}
+          className="text-xl font-semibold text-[#EADBC8] bg-[#DAC0A3] hover:text-[#102C57] hover:bg-[#EADBC8] duration-200 ease-in-out w-full h-full px-4 py-1"
+        >
+          Home
         </Link>
-        <Link href={'/about'} className="text-xl font-semibold text-[#EADBC8] bg-[#DAC0A3] hover:text-[#102C57] hover:bg-[#EADBC8] duration-200 ease-in-out w-full h-full px-4 py-1">
-            About
+        <Link
+          href={"/about"}
+          className="text-xl font-semibold text-[#EADBC8] bg-[#DAC0A3] hover:text-[#102C57] hover:bg-[#EADBC8] duration-200 ease-in-out w-full h-full px-4 py-1"
+        >
+          About
         </Link>
       </nav>
     </Fragment>
