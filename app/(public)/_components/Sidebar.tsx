@@ -41,18 +41,18 @@ export default function Sidebar() {
           },
         }}
         onClick={() => setIsOpen(true)}
-        className="fixed top-8 left-8 z-20 bg-[#DAC0A3] p-1 rounded-sm cursor-pointer"
+        className="fixed top-4 left-4 md:top-8 md:left-8 z-20 bg-[#DAC0A3] p-1 rounded-sm cursor-pointer"
       >
         <IoMdMenu size={40} className="text-[#EADBC8]" />
       </motion.div>
 
       <nav
         id="sidebar"
-        className={`bg-[#DAC0A3] flex flex-col p-2 z-30 fixed top-24 left-8 rounded-sm shadow-md ${
+        className={`bg-[#DAC0A3] flex flex-col p-2 z-30 fixed top-20 md:top-24 md:left-8 left-4 rounded-sm shadow-md ${
           isOpen ? "left-8 opacity-1" : "left-[-200px] opacity-0"
         } duration-500 ease-in-out`}
       >
-        <Link href={'/login'} className="text-xl font-semibold text-[#EADBC8] bg-[#DAC0A3] hover:text-[#102C57] hover:bg-[#EADBC8] duration-200 ease-in-out w-full h-full px-4 py-1">
+        <Link href={'/auth-to-do'} className="text-xl font-semibold text-[#EADBC8] bg-[#DAC0A3] hover:text-[#102C57] hover:bg-[#EADBC8] duration-200 ease-in-out w-full h-full px-4 py-1">
             Login
         </Link>
         <Link href={'/home'} className="text-xl font-semibold text-[#EADBC8] bg-[#DAC0A3] hover:text-[#102C57] hover:bg-[#EADBC8] duration-200 ease-in-out w-full h-full px-4 py-1">
