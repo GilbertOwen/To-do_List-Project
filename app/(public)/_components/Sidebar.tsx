@@ -58,7 +58,7 @@ export default function Sidebar() {
           href={"/auth-to-do"}
           className="text-xl font-semibold text-[#EADBC8] bg-[#DAC0A3] hover:text-[#102C57] hover:bg-[#EADBC8] duration-200 ease-in-out w-full h-full px-4 py-1"
         >
-          Login
+          Application
         </Link>
         <Link
           href={"/"}
