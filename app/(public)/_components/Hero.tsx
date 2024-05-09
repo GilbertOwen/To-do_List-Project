@@ -64,7 +64,7 @@ export default function Hero() {
             className="group origin-bottom-left"
           >
             <Link
-              href={"/login"}
+              href={"/auth-to-do"}
               className="group-hover:-rotate-[15deg] rounded-md font-medium flex flex-col origin-bottom-left w-[80px] h-[80px] xs:w-[120px] xs:h-[120px] ssm:w-[150px] ssm:h-[150px] group-hover:text-opacity-100 text-opacity-50 text-[#DAC0A3] sm:w-[170px] sm:h-[170px] md:h-[200px] md:w-[200px] lg:h-[250px] lg:w-[250px] bg-[#FEFAF6] shadow-md border-none select-none justify-center items-center text-xl xs:text-3xl ssm:text-4xl md:text-5xl transition-all"
             >
               Try
@@ -80,7 +80,7 @@ export default function Hero() {
             className="group"
           >
             <Link
-              href={"/login"}
+              href={"/auth-to-do"}
               className="group-hover:-translate-y-10 rounded-md font-medium flex flex-col origin-bottom-left w-[80px] h-[80px] xs:w-[120px] xs:h-[120px] ssm:w-[150px] ssm:h-[150px] group-hover:text-opacity-100 text-opacity-50 text-[#DAC0A3] sm:w-[170px] sm:h-[170px] md:h-[200px] md:w-[200px] lg:h-[250px] lg:w-[250px] bg-[#FEFAF6] shadow-md border-none select-none justify-center items-center text-xl xs:text-3xl ssm:text-4xl md:text-5xl transition-all"
             >
               Our
@@ -98,7 +98,7 @@ export default function Hero() {
             className="group"
           >
             <Link
-              href={"/login"}
+              href={"/auth-to-do"}
               className="group-hover:rotate-[15deg] rounded-md font-medium flex flex-col origin-bottom-right w-[80px] h-[80px] xs:w-[120px] xs:h-[120px] ssm:w-[150px] ssm:h-[150px] group-hover:text-opacity-100 text-opacity-50 text-[#DAC0A3] sm:w-[170px] sm:h-[170px] md:h-[200px] md:w-[200px] lg:h-[250px] lg:w-[250px] bg-[#FEFAF6] shadow-md border-none select-none justify-center items-center text-xl xs:text-3xl ssm:text-4xl md:text-5xl transition-all"
             >
               App
