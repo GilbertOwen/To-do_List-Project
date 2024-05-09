@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import LoginForm from "./_components/LoginForm";
 import RegisterForm from "./_components/RegisterForm";
 import { Toaster } from "@/components/ui/toaster";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
 
-export default function authToDo({
+export default function AuthToDo({
   searchParams,
 }: {
   searchParams?: { registered?: boolean };
@@ -14,12 +14,15 @@ export default function authToDo({
     const { replace } = useRouter();
   const pathname = usePathname()
   const [formType, setFormType] = useState<string>("login");
+  const handleMovement = () => {
+    setFormType('login');
+    const params = new URLSearchParams(searchParams as any)
+    params.delete('registered', 'true')
+    replace(`${pathname}?${params}`)
+  }
   useEffect(() => {
     if(searchParams?.registered){
-        setFormType('login');
-        const params = new URLSearchParams(searchParams as any)
-        params.delete('registered', 'true')
-        replace(`${pathname}?${params}`)
+        handleMovement();
         toast({
             title: "Login",
             variant:'default',
