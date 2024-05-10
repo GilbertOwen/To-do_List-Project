@@ -1,7 +1,6 @@
 "use server";
 import prisma from "@/lib/db";
 import { z } from "zod";
-// import bcrypt from "bcrypt"
 const bcrypt = require("bcrypt");
 const registerSchema = z.object({
   username: z.string().min(4, "Must be 4 or more characters long"),
@@ -17,7 +16,9 @@ export default async function registerUser(prevState: any, formData: FormData) {
         password: String(formData.get("password")),
     }
     registerSchema.parse(userData);
-
+    if(await prisma.user.findUnique({where:{email:userData.email}})){
+      throw 'email'
+    }
     await prisma.user.create({
         data:{
             username:userData.username,
@@ -31,11 +32,14 @@ export default async function registerUser(prevState: any, formData: FormData) {
       status: "success",
     };
   } catch (error: any) {
-    console.log(error);
     const errors: any = {};
-    error?.errors?.map((err: any) => {
-      errors[err.path[0]] = err.message;
-    });
+    if(error != 'email'){
+      error?.errors?.map((err: any) => {
+        errors[err.path[0]] = err.message;
+      });
+    }else{
+      errors.email = 'Email has already been registered'
+    }
     return {
       message: "User failed to be registered",
       status: "error",
