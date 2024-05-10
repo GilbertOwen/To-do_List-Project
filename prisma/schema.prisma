@@ -15,6 +15,8 @@ datasource db {
 
 model User{
   id Int @id @default(autoincrement())
+  profilePicture String? @db.Text
+  biodata String? @db.Text
   username String @db.VarChar(155)
   email String @db.VarChar(255) @unique
   password String @db.VarChar(255)

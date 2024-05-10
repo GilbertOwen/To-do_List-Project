@@ -13,7 +13,6 @@ export default function DashboardPage(){
     }, [status])
     return (
         <div className="">
-            <button onClick={async () => { await signOut(); router.refresh()}}>Log out</button>
         </div>
     )
 }
