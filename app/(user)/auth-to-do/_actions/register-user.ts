@@ -5,7 +5,7 @@ import { z } from "zod";
 const bcrypt = require("bcrypt");
 const registerSchema = z.object({
   username: z.string().min(4, "Must be 4 or more characters long"),
-  email: z.string(),
+  email: z.string().email(),
   password: z.string().min(8, "Must be 8 or more characters long"),
 });
 
