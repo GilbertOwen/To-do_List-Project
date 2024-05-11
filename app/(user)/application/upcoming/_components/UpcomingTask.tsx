@@ -32,15 +32,16 @@ export default function UpcomingTask() {
           Task of {monthFilter}
         </h1>
         <div className="flex flex-row justify-between px-4">
-          <select name="" id="" className="text-sm sm:text-base border-2 p-1" defaultValue={"no"}>
+          <select name="" id="" className="text-sm sm:text-base border-2 rounded-md p-1 cursor-pointer" defaultValue={"no"}>
             <option value="no" disabled>
               Sort by
             </option>
+            <option value="" className="border-0 outline-none p-1">Nearest</option>
           </select>
-          <input type="month" className="text-sm sm:text-base border-2 p-1 transition-all" min={getNowMonth()} />
+          <input type="month" className="text-sm sm:text-base border-2 p-1 cursor-pointer rounded-md transition-all" min={getNowMonth()} />
         </div>
       </div>
-      <div className="bg-gray-200 select-none h-[100%] w-[100%] gap-x-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex-nowrap gap-y-4 md:gap-y-12 py-6 md:py-10 px-8">
+      <div className="bg-gray-200 transition-all select-none h-[100%] w-[100%] gap-x-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex-nowrap gap-y-4 py-6 md:py-10 px-8">
         <div className="flex flex-col hover:scale-105 transition-all cursor-grab bg-white border-gray-300 shadow-sm w-[full] h-fit border-2 overflow-hidden rounded-xl">
           <Image
             sizes="100vw"
