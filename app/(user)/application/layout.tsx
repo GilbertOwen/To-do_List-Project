@@ -9,6 +9,10 @@ import { redirect } from "next/navigation";
 
 export default async function ApplicationLayout({children}: {children:React.ReactNode}){
     const session:any = await getServerSession(authOptions)
+    if(!session){
+        signOut()
+        redirect('/auth-to-do')
+    }
     const user = await prisma.user.findUnique({where:{id:session.user.id, email:session.user.email}})
     if(!user){
         signOut()
