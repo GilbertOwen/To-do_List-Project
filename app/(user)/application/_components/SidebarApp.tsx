@@ -32,17 +32,23 @@ export default function SidebarApp({ user }: { user: User }) {
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         animate={{
-          opacity: 1,
+          opacity: 0.6,
           scale: [1, 0.4, 1],
         }}
         transition={{
           duration: 1,
           ease: "easeIn",
         }}
+        whileHover={{ 
+          opacity:1,
+          transition:{
+            duration:0.2,ease:"easeInOut"
+          }
+         }}
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed top-4 left-4 ${
+        className={`fixed top-12 left-0 ${
           isOpen ? "hidden" : "flex"
-        } shadow-[4px 4px 7px rgba(90, 90, 90, 0.25)] group hover:bg-[white] scale-100 hover:scale-95 hover:shadow-md  md:top-8 md:left-8 z-20 bg-[black] p-4 rounded-md cursor-pointer transition-all`}
+        } shadow-[4px_4px_7px_rgba(90, 90, 90, 0.25)] group scale-100 hover:scale-95 hover:shadow-md  lg:top-8 lg:left-8 z-[30] bg-[black] p-2 rounded-md cursor-pointer transition-all`}
       >
         {user.profilePicture?.length ? (
           <Image
@@ -61,7 +67,7 @@ export default function SidebarApp({ user }: { user: User }) {
           isOpen
             ? "left-8  opacity-100 transition-all"
             : "left-[-200px] opacity-0 transition-all"
-        }} rounded-[8px] flex flex-col w-fit pr-[48px] pl-6 pt-[24px] pb-[80px] fixed top-8 bg-black py-4 px-2 transition-all gap-y-[24px]`}
+        }} rounded-[8px] flex flex-col w-fit z-[30] pr-[48px] pl-6 pt-[24px] pb-[80px] fixed top-8 bg-black py-4 px-2 transition-all gap-y-[24px]`}
         id="sidebarApp"
       >
         <li className="flex flex-row items-center justify-between cursor-pointer group mb-[12px]">
@@ -83,35 +89,35 @@ export default function SidebarApp({ user }: { user: User }) {
             color="white"
           />
         </li>
-        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" href={"/"}>
+        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)} href={"/"}>
           <FaPlus size={28} color="white"/>
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Task
           </span>
         </Link>
-        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" href={""}>
+        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)} href={"/application/dashboard"}>
           <IoMdHome size={28} color="white"/>
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Home
           </span>
         </Link>
-        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" href={""}>
+        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)}  href={""}>
           <FaSearch size={28} color="white"/>
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Find Task
           </span>
         </Link>
-        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" href={""}>
+        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)} href={"/application/upcoming"}>
           <FaCalendarAlt size={28} color="white"/>
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Upcoming
           </span>
         </Link>
-        <li className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> {signOut()}}>
+        <li className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> {signOut(); setIsOpen(false)}}>
           <FaSignOutAlt size={28} color="white"/>
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
