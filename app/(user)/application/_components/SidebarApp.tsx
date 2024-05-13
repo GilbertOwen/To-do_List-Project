@@ -5,7 +5,7 @@ import Image from "next/image";
 import { CgProfile } from "react-icons/cg";
 import { TiArrowSortedDown } from "react-icons/ti";
 import type { User } from "@prisma/client";
-import { FaCalendarAlt, FaPlus, FaSearch, FaSignOutAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaInbox, FaPlus, FaSearch, FaSignOutAlt } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
@@ -46,9 +46,9 @@ export default function SidebarApp({ user }: { user: User }) {
           }
          }}
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed top-12 left-0 ${
+        className={`fixed top-4 right-4 ${
           isOpen ? "hidden" : "flex"
-        } shadow-[4px_4px_7px_rgba(90, 90, 90, 0.25)] group scale-100 hover:scale-95 hover:shadow-md  lg:top-8 lg:left-8 z-[30] bg-[black] p-2 rounded-md cursor-pointer transition-all`}
+        } shadow-[4px_4px_7px_rgba(90, 90, 90, 0.25)] group scale-100 hover:scale-95 hover:shadow-md lg:right-8 z-[60] bg-[black] p-2 rounded-md cursor-pointer transition-all`}
       >
         {user.profilePicture?.length ? (
           <Image
@@ -101,6 +101,13 @@ export default function SidebarApp({ user }: { user: User }) {
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Home
+          </span>
+        </Link>
+        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)} href={"/application/inbox"}>
+          <FaInbox size={28} color="white"/>
+
+          <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
+            Inbox
           </span>
         </Link>
         <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)}  href={""}>
