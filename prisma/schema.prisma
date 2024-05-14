@@ -13,13 +13,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id Int @id @default(autoincrement())
-  profilePicture String? @db.Text
-  biodata String? @db.Text
-  username String @db.VarChar(155)
-  email String @db.VarChar(255) @unique
-  password String @db.VarChar(255)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model User {
+  id             Int      @id @default(autoincrement())
+  profilePicture String?  @db.Text
+  biodata        String?  @db.Text
+  username       String   @db.VarChar(155)
+  email          String   @unique @db.VarChar(255)
+  password       String   @db.VarChar(255)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  image       String?  @db.Text
+  title       String   @db.VarChar(255)
+  description String   @db.Text
+  priority    Priority @default(low)
+  isComplete  Boolean  @default(false) @db.TinyInt()
+  deadline_at DateTime @db.Date()
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+}
+
+enum Priority {
+  high
+  medium
+  low
 }
