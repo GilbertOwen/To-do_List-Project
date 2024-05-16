@@ -52,7 +52,7 @@ export default function UpcomingTask() {
             alt=""
           />
           <div className="p-2">
-            <p className="font-semibold text-sm mb-2">26-09-2006</p>
+            <p className="font-semibold text-sm mb-2 border-b-2 border-black w-fit">26-09-2006</p>
             <h3 className="text-red-500 text-xl font-semibold mb-1">Doing my dishes</h3>
             <h5 className="text-sm font-medium mb-4">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est,
@@ -71,7 +71,7 @@ export default function UpcomingTask() {
             alt=""
           />
           <div className="p-2">
-            <p className="font-semibold text-sm mb-2">26-09-2006</p>
+            <p className="font-semibold text-sm mb-2 border-b-2 border-black w-fit">26-09-2006</p>
             <h3 className="text-red-500 text-xl font-semibold mb-1">Doing my dishes</h3>
             <h5 className="text-sm font-medium mb-4">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est,
@@ -90,7 +90,7 @@ export default function UpcomingTask() {
             alt=""
           />
           <div className="p-2">
-            <p className="font-semibold text-sm mb-2">26-09-2006</p>
+            <p className="font-semibold text-sm mb-2 border-b-2 border-black w-fit">26-09-2006</p>
             <h3 className="text-green-500 text-xl font-semibold mb-1">Doing my dishes</h3>
             <h5 className="text-sm font-medium mb-4">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est,
@@ -109,7 +109,7 @@ export default function UpcomingTask() {
             alt=""
           />
           <div className="p-2">
-            <p className="font-semibold text-sm mb-2">26-09-2006</p>
+            <p className="font-semibold text-sm mb-2  border-b-2 border-black w-fit">26-09-2006</p>
             <h3 className="text-red-500 text-xl font-semibold mb-1">Doing my dishes</h3>
             <h5 className="text-sm font-medium mb-4">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est,
