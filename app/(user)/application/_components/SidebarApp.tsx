@@ -9,6 +9,7 @@ import { FaCalendarAlt, FaInbox, FaPlus, FaSearch, FaSignOutAlt } from "react-ic
 import { IoMdHome } from "react-icons/io";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import AddTaskModal from "./subcomponents/(addTask)/AddTaskModal";
 
 export default function SidebarApp({ user }: { user: User }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -20,13 +21,20 @@ export default function SidebarApp({ user }: { user: User }) {
     };
   }, [isOpen]);
   const handleClickOutside = (e: MouseEvent) => {
-    const sidebar: HTMLElement = document.getElementById(
-      "sidebarApp"
+    const content: HTMLElement = document.getElementById(
+      'sidebarApp'
     ) as HTMLElement;
-    if (sidebar && !sidebar.contains(e.target as Node)) {
+    if (content && !content.contains(e.target as Node)) {
       setIsOpen(false);
     }
   };
+  const handleAddTaskModal = (e:any) => {
+    const backdrop = document.getElementById('backdrop');
+    if(e.target.className === backdrop?.className){
+      setOpenAddModal(false);
+    }
+  }
+  const [openAddModal, setOpenAddModal] = useState<boolean>(true);
   return (
     <>
       <motion.div
@@ -89,13 +97,13 @@ export default function SidebarApp({ user }: { user: User }) {
             color="white"
           />
         </li>
-        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)} href={"/"}>
+        <li className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=>{setIsOpen(false); setOpenAddModal(true)}}>
           <FaPlus size={28} color="white"/>
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Task
           </span>
-        </Link>
+        </li>
         <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)} href={"/application/dashboard"}>
           <IoMdHome size={28} color="white"/>
 
@@ -132,6 +140,7 @@ export default function SidebarApp({ user }: { user: User }) {
           </span>
         </li>
       </ul>
+      {openAddModal && <AddTaskModal clickEvent={handleAddTaskModal} cancelEvent={()=>setOpenAddModal(false)} />}
     </>
   );
 }
