@@ -20,7 +20,7 @@ export default async function InboxPage({
   return (
     <div className="flex flex-col w-full min-h-screen">
       <Upbar></Upbar>
-      <div className="grow w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] flex flex-col sm:border-x-2 mx-auto">
+      <div className="grow w-[100%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] flex flex-col sm:border-x-2 mx-auto border-black">
         <InboxFilter></InboxFilter>
         <Suspense fallback={<Loading />}>
           <InboxTask tasks={tasks}></InboxTask>
