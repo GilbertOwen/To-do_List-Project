@@ -10,7 +10,7 @@ export default function Upbar() {
         duration:0.6,
         ease:'easeInOut'
      }}
-    className="py-6 border-b-2 flex flex-col items-center">
+    className="py-6 border-b-2 flex flex-col border-black items-center">
       <h1 className="font-semibold text-5xl">Inbox</h1>
     </motion.div>
   );

@@ -42,16 +42,16 @@ export default function InboxTask({ tasks }: { tasks: Task[] }) {
           <h2
             className={`p-4 ${
               index === 0 ? "border-b-2" : "border-y-2"
-            } my-2 font-semibold `}
+            } my-2 font-semibold border-black`}
           >
             {task.deadline_at.toDateString()}
           </h2>
           <div className="flex flex-col px-4 gap-y-2">
             <div
-              className="w-full border-2 rounded-md p-2 cursor-grab"
+              className="w-full border-2 border-black rounded-md p-2 cursor-grab"
               key={index}
             >
-              <div className="pb-1 border-b-2 mb-2 flex flex-row items-center gap-x-2">
+              <div className="pb-1 border-b-2 border-black mb-2 flex flex-row items-center gap-x-2">
                 <span
                   className={`w-[20px] h-[10px] ${handlePriority(
                     task.priority

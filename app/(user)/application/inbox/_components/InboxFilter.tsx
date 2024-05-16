@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
 export default function InboxFilter() {
   const pathname = usePathname();
