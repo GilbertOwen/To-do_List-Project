@@ -1,6 +1,7 @@
 "use client"
 import type { Task } from "@prisma/client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function InboxTask({ tasks }: { tasks: Task[] }) {
   const handlePriority = (priority: string) => {
@@ -47,10 +48,9 @@ export default function InboxTask({ tasks }: { tasks: Task[] }) {
             {task.deadline_at.toDateString()}
           </h2>
           <div className="flex flex-col px-4 gap-y-2">
-            <div
+            <Link
               className="w-full border-2 border-black rounded-md p-2 cursor-grab"
-              key={index}
-            >
+              key={index} href={"/application/task/" + task.id}>
               <div className="pb-1 border-b-2 border-black mb-2 flex flex-row items-center gap-x-2">
                 <span
                   className={`w-[20px] h-[10px] ${handlePriority(
@@ -61,7 +61,7 @@ export default function InboxTask({ tasks }: { tasks: Task[] }) {
               </div>
               <p className="text-base font-medium">{task.description}</p>
               <small>See more ~</small>
-            </div>
+            </Link>
           </div>
         </motion.div>
       ))}
