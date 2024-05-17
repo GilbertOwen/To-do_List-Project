@@ -7,7 +7,7 @@ export default function Upbar() {
   return (
     <div className=" fixed top-0 w-full z-[20]">
       <div
-        className={`text-black w-full bg-white rounded-b-xl border-b-2 overflow-hidden shadow-sm p-4 ${
+        className={`text-black w-full bg-white rounded-b-xl border-black border-b-2 overflow-hidden shadow-sm p-4 ${
           isOpen ? "pb-6" : "pb-4"
         } transition-all`}
       >
