@@ -8,7 +8,7 @@ import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { Toaster } from "@/components/ui/toaster";
 
-export default async function ApplicationLayout({children}: {children:React.ReactNode}){
+export default async function ApplicationLayout({modal,children}: {modal:React.ReactNode,children:React.ReactNode}){
     const session:any = await getServerSession(authOptions)
     if(!session){
         signOut()
@@ -24,6 +24,7 @@ export default async function ApplicationLayout({children}: {children:React.Reac
             <Toaster />
             <SidebarApp user={user as User}></SidebarApp>
             {children}
+            {modal}
         </Fragment>
     )
 }
