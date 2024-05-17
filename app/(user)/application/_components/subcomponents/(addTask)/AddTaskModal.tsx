@@ -37,7 +37,7 @@ export default function AddTaskModal({
     if (state.status === "success") {
       toast({
         title: "Successfully registered",
-        variant: "success",
+        variant: 'default',
         description: state.message,
       });
       taskForm.current.reset();
@@ -102,7 +102,7 @@ export default function AddTaskModal({
             id="description"
             placeholder="Put some detail on this task for futher usability"
           ></textarea>
-          <div className={`grid grid-cols-2 md:grid-cols-3 w-full gap-x-2 ${state.errors.title ? 'mb-0' : 'mb-4'}`}>
+          <div className={`grid grid-cols-2 md:grid-cols-3 w-full gap-x-2 ${state.errors.deadline_at ? 'mb-0' : 'mb-4'}`}>
             <input
               name="deadline_at"
               id="deadline_at"
