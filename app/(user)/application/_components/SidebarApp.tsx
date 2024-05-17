@@ -34,7 +34,7 @@ export default function SidebarApp({ user }: { user: User }) {
       setOpenAddModal(false);
     }
   }
-  const [openAddModal, setOpenAddModal] = useState<boolean>(true);
+  const [openAddModal, setOpenAddModal] = useState<boolean>(false);
   return (
     <>
       <motion.div
