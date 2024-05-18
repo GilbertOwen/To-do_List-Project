@@ -124,7 +124,11 @@ export default function FormTaskModal({ task }: { task: Task }) {
               type="date"
               defaultValue={`${task.deadline_at.getFullYear()}-0${
                 task.deadline_at.getMonth() + 1
-              }-${task.deadline_at.getDate()}`}
+              }-${
+                task.deadline_at.getDate() > 10
+                  ? task.deadline_at.getDate()
+                  : "0" + task.deadline_at.getDate()
+              }`}
               min={`${handleDate().toString()}`}
               onChange={(e) => {
                 setIsChanged(true);
