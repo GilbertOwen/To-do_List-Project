@@ -56,7 +56,7 @@ export default function SidebarApp({ user }: { user: User }) {
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed top-4 right-4 ${
           isOpen ? "hidden" : "flex"
-        } shadow-[4px_4px_7px_rgba(90, 90, 90, 0.25)] group scale-100 hover:scale-95 hover:shadow-md lg:right-8 z-[60] bg-[black] p-2 rounded-md cursor-pointer transition-all`}
+        } shadow-[4px_4px_7px_rgba(90, 90, 90, 0.25)] group scale-100 hover:scale-95 hover:shadow-md lg:right-8 z-[100] bg-[black] p-2 rounded-md cursor-pointer transition-all`}
       >
         {user.profilePicture?.length ? (
           <Image
@@ -75,7 +75,7 @@ export default function SidebarApp({ user }: { user: User }) {
           isOpen
             ? "left-8  opacity-100 transition-all"
             : "left-[-200px] opacity-0 transition-all"
-        }} rounded-[8px] flex flex-col w-fit z-[30] pr-[48px] pl-6 pt-[24px] pb-[80px] fixed top-8 bg-black py-4 px-2 transition-all gap-y-[24px]`}
+        }} rounded-[8px] flex flex-col w-fit z-[100] pr-[48px] pl-6 pt-[24px] pb-[80px] fixed top-8 bg-black py-4 px-2 transition-all gap-y-[24px]`}
         id="sidebarApp"
       >
         <li className="flex flex-row items-center justify-between cursor-pointer group mb-[12px]">
