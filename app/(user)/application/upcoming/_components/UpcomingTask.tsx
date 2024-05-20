@@ -44,7 +44,7 @@ export default function UpcomingTask({
     >
       <UpcomingFilter></UpcomingFilter>
       <Pagination totalPages={totalPages as number}></Pagination>
-      <div className="bg-gray-200 transition-all select-none h-[100%] w-[100%] gap-x-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex-nowrap gap-y-4 py-6 md:py-10 px-4">
+      <div className={`bg-gray-200 transition-all select-none h-[100%] w-[100%] gap-x-4 grid grid-cols-1 ${tasks.length != 0 ? 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : ''} flex-nowrap gap-y-4 py-6 md:py-10 px-4`}>
         {tasks.length !== 0 ?
           tasks.map((task, index) => (
             <Link
@@ -82,7 +82,7 @@ export default function UpcomingTask({
               </div>
             </Link>
           )) : (
-            <div className="text-xl font-medium">No Task Available at this point</div>
+            <div className="text-xl font-medium grow flex justify-center items-center">No Task Available at this point</div>
           )}
       </div>
     </motion.div>
