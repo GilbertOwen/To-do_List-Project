@@ -11,7 +11,7 @@ export default function UpcomingFilter() {
     params.set("sort", sortBy);
     replace(`${pathname}?${params.toString()}`);
   };
-  const currentMonth = String(searchParams.get("inMonth")) || '';
+  const currentMonth = searchParams.get("inMonth") === null ? '' : searchParams.get('inMonth') as string;
   const monthByName = (numMonth: number) => {
     switch (numMonth) {
       case 1:
@@ -37,12 +37,10 @@ export default function UpcomingFilter() {
       case 11:
         return "November";
       case 12:
-        return "December"; // Corrected from "Desember"
-      default:
-        return "Invalid month"; // Added default case to handle invalid month numbers
+        return "December";
     }
   };
-  const [monthFilter, setMonthFilter] = useState<any>(getMonth('name' ,currentMonth));
+  const [monthFilter, setMonthFilter] = useState<any>(getMonth('name' , currentMonth));
   function setMonth(monthBy: string | null = null) {
     const params = new URLSearchParams(searchParams);
     let date: Date;
@@ -53,9 +51,9 @@ export default function UpcomingFilter() {
     }
     params.set(
       "inMonth",
-      `${String(date.getFullYear())}-${"0" + String(date.getMonth() + 1)}`
+      `${String(date.getFullYear())}-${"0" + String(Number(date.getMonth().toString()) + 1)}`
     );
-    const inWhatMonth = date.getMonth() + 1;
+    const inWhatMonth = Number(date.getMonth()) + 1;
     replace(`${pathname}?${params.toString()}`);
     setMonthFilter(monthByName(inWhatMonth));
   }
@@ -64,9 +62,10 @@ export default function UpcomingFilter() {
     if (currMonth === "") {
       date = new Date();
     } else {
+      console.log(currMonth);
       date = new Date(currMonth);
     }
-    const inWhatMonth = date.getMonth() + 1;
+    const inWhatMonth = Number(date.getMonth().toString()) + 1;
     if (getBy == "name") {
       return monthByName(inWhatMonth);
     } else if (getBy == "date") {
