@@ -83,7 +83,7 @@ export default function FormTaskModal({ task }: { task: Task }) {
             ease: "easeInOut",
           },
         }}
-        className="flex flex-col w-[50%] overflow-y-auto overflow-x-hidden p-4 rounded-md h-fit max-h-[80%] bg-white"
+        className="flex flex-col w-[90%] md:w-[70%] lg:w-[50%] overflow-y-auto overflow-x-hidden p-4 rounded-md h-fit max-h-[80%] bg-white"
       >
         <form action={formAction} ref={taskForm}>
           <input type="hidden" name="id" defaultValue={task.id} />
