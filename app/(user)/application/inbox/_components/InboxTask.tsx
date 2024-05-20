@@ -15,7 +15,7 @@ export default function InboxTask({ tasks }: { tasks: Task[] }) {
   };
   return (
     <div className="flex flex-col pb-4 gap-y-4">
-      {tasks.map((task, index) => (
+      {tasks.length > 0 ? tasks.map((task, index) => (
         <motion.div
           initial={{
             y: 100,
@@ -64,7 +64,11 @@ export default function InboxTask({ tasks }: { tasks: Task[] }) {
             </Link>
           </div>
         </motion.div>
-      ))}
+      )) : 
+      <div className="grow w-full h-full flex flex-col items-center mt-10 font-medium">
+        No task yet
+      </div>
+      }
     </div>
   );
 }
