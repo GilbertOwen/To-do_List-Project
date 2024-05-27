@@ -25,6 +25,7 @@ export default async function updateTask(prevState: any, data: FormData) {
       title: data.get("title") as string,
       description: data.get("description") as string,
       priority: data.get("priority") as string,
+      isComplete: data.get("isComplete") === 'on' ? true : false,
       deadline_at: new Date(data.get("deadline_at") as string),
     };
     taskSchema.parse(task);
@@ -45,7 +46,6 @@ export default async function updateTask(prevState: any, data: FormData) {
       errors: {},
     };
   } catch (error: any) {
-    console.log(error);
     const errors: any = {};
     if (error != "email") {
       error?.errors?.map((err: any) => {
