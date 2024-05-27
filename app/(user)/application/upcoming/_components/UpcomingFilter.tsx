@@ -86,7 +86,7 @@ export default function UpcomingFilter() {
           id=""
           onChange={(e) => setSort(e.target.value)}
           className="text-sm sm:text-base border-2 rounded-md p-1 cursor-pointer"
-          defaultValue={"nearest"}
+          defaultValue={searchParams.get('sort') as string || 'nearest'}
         >
           <option value="no" disabled>
             Sort by
@@ -102,6 +102,12 @@ export default function UpcomingFilter() {
           </option>
           <option value="lowest" className="border-0 outline-none p-1">
             Lowest Priority
+          </option>
+          <option value="uncompleted" className="border-0 outline-none p-1">
+            Uncompleted Task
+          </option>
+          <option value="completed" className="border-0 outline-none p-1">
+            Completed Task
           </option>
         </select>
         <input
