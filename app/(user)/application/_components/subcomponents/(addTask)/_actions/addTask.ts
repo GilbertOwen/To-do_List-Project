@@ -15,7 +15,7 @@ const taskSchema = z
     priority: z.enum(["low", "medium", "high"]),
     deadline_at: z
       .date()
-      .min(startOfToday(), { message: "Please input date ahead from now " }),
+      .min(startOfToday(), { message: "Please input date based on today or further day" }),
   })
   .required();
 
