@@ -5,8 +5,14 @@ import Image from "next/image";
 import { CgProfile } from "react-icons/cg";
 import { TiArrowSortedDown } from "react-icons/ti";
 import type { User } from "@prisma/client";
-import { FaCalendarAlt, FaInbox, FaPlus, FaSearch, FaSignOutAlt } from "react-icons/fa";
-import { IoMdHome } from "react-icons/io";
+import {
+  FaCalendarAlt,
+  FaInbox,
+  FaPlus,
+  FaSearch,
+  FaSignOutAlt,
+} from "react-icons/fa";
+import { IoMdArrowDropleft, IoMdHome } from "react-icons/io";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import AddTaskModal from "./subcomponents/(addTask)/AddTaskModal";
@@ -22,19 +28,21 @@ export default function SidebarApp({ user }: { user: User }) {
   }, [isOpen]);
   const handleClickOutside = (e: MouseEvent) => {
     const content: HTMLElement = document.getElementById(
-      'sidebarApp'
+      "sidebarApp"
     ) as HTMLElement;
     if (content && !content.contains(e.target as Node)) {
       setIsOpen(false);
     }
   };
-  const handleAddTaskModal = (e:any) => {
-    const backdrop = document.getElementById('backdrop');
-    if(e.target.className === backdrop?.className){
+  const handleAddTaskModal = (e: any) => {
+    const backdrop = document.getElementById("backdrop");
+    if (e.target.className === backdrop?.className) {
       setOpenAddModal(false);
     }
-  }
+  };
   const [openAddModal, setOpenAddModal] = useState<boolean>(false);
+  const [openDropdownProfile, setOpenDropdownProfile] =
+    useState<boolean>(false);
   return (
     <>
       <motion.div
@@ -47,12 +55,13 @@ export default function SidebarApp({ user }: { user: User }) {
           duration: 1,
           ease: "easeIn",
         }}
-        whileHover={{ 
-          opacity:1,
-          transition:{
-            duration:0.2,ease:"easeInOut"
-          }
-         }}
+        whileHover={{
+          opacity: 1,
+          transition: {
+            duration: 0.2,
+            ease: "easeInOut",
+          },
+        }}
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed top-4 right-4 ${
           isOpen ? "hidden" : "flex"
@@ -74,73 +83,132 @@ export default function SidebarApp({ user }: { user: User }) {
         className={`${
           isOpen
             ? "left-8  opacity-100 transition-all"
-            : "left-[-200px] opacity-0 transition-all"
-        }} rounded-[8px] flex flex-col w-fit z-[100] pr-[48px] pl-6 pt-[24px] pb-[80px] fixed top-8 bg-black py-4 px-2 transition-all gap-y-[24px]`}
+            : "left-[-100%] opacity-0 transition-all"
+        }} rounded-[8px] flex flex-col w-fit z-[100] pr-[24px] pl-6 pt-[24px] pb-[80px] fixed top-8 bg-black py-4 px-2 transition-all gap-y-[24px]`}
         id="sidebarApp"
       >
-        <li className="flex flex-row items-center justify-between cursor-pointer group mb-[12px]">
-          <div className="flex flex-row items-center gap-x-4 ">
-          <Image
-            src={`/${user.profilePicture}`}
-            width={30}
-            height={40}
-            className="w-[30px] h-[30px] object-cover rounded-full"
-            alt={""}
-          ></Image>
-          <span className="text-white font-semibold text-[20px] group-hover:opacity-80">
-            {user.username}
-          </span>
+        <li
+          className={`flex flex-row items-center justify-between cursor-pointer select-none group ${
+            openDropdownProfile ? "mb-[0px]" : "mb-[12px]"
+          }`}
+          onClick={() => setOpenDropdownProfile(!openDropdownProfile)}
+        >
+          <div className="flex flex-row items-center gap-x-6 mr-4">
+            <Image
+              src={`/${user.profilePicture}`}
+              width={30}
+              height={40}
+              className="w-[30px] h-[30px] object-cover rounded-full"
+              alt={""}
+            ></Image>
+            <span className="text-white font-semibold text-[20px] group-hover:opacity-80">
+              {user.username}
+            </span>
           </div>
-          <TiArrowSortedDown
-            className="group-hover:opacity-80"
-            size={20}
-            color="white"
-          />
+          {openDropdownProfile ? (
+            <TiArrowSortedDown
+              className="group-hover:opacity-80"
+              size={20}
+              color="white"
+            />
+          ) : (
+            <TiArrowSortedDown
+              className="group-hover:opacity-80 rotate-[90deg]"
+              size={20}
+              color="white"
+            />
+          )}
         </li>
-        <li className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=>{setIsOpen(false); setOpenAddModal(true)}}>
-          <FaPlus size={28} color="white"/>
+        <li
+          className={`${
+            openDropdownProfile ? "flex" : "hidden"
+          } text-white text-[16px] font-semibold group`}
+        >
+          <Link
+            href={"/application/profile"}
+            className="hover:opacity-80 flex flex-row items-center gap-x-6"
+          >
+            <CgProfile size={30} color="white" />
+            <span>Profile</span>
+          </Link>
+        </li>
+        <li
+          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          onClick={() => {
+            setIsOpen(false);
+            setOpenAddModal(true);
+          }}
+        >
+          <FaPlus size={28} color="white" />
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Task
           </span>
         </li>
-        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)} href={"/application/dashboard"}>
-          <IoMdHome size={28} color="white"/>
+        <Link
+          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          onClick={() => setIsOpen(false)}
+          href={"/application/dashboard"}
+        >
+          <IoMdHome size={28} color="white" />
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Home
           </span>
         </Link>
-        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)} href={"/application/inbox"}>
-          <FaInbox size={28} color="white"/>
+        <Link
+          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          onClick={() => setIsOpen(false)}
+          href={"/application/inbox"}
+        >
+          <FaInbox size={28} color="white" />
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Inbox
           </span>
         </Link>
-        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)}  href={""}>
-          <FaSearch size={28} color="white"/>
+        <Link
+          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          onClick={() => setIsOpen(false)}
+          href={""}
+        >
+          <FaSearch size={28} color="white" />
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Find Task
           </span>
         </Link>
-        <Link className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> setIsOpen(false)} href={"/application/upcoming"}>
-          <FaCalendarAlt size={28} color="white"/>
+        <Link
+          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          onClick={() => setIsOpen(false)}
+          href={"/application/upcoming"}
+        >
+          <FaCalendarAlt size={28} color="white" />
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Upcoming
           </span>
         </Link>
-        <li className="flex flex-row items-center gap-x-6 cursor-pointer group" onClick={()=> {signOut(); setIsOpen(false)}}>
-          <FaSignOutAlt size={28} color="white"/>
+        <li
+          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          onClick={() => {
+            signOut();
+            setIsOpen(false);
+          }}
+        >
+          <FaSignOutAlt size={28} color="white" />
 
           <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
             Sign Out
           </span>
         </li>
       </ul>
-      {openAddModal && <AddTaskModal clickEvent={handleAddTaskModal} cancelEvent={()=>setOpenAddModal(false)} />}
+      {openAddModal && (
+        <AddTaskModal
+          clickEvent={handleAddTaskModal}
+          cancelEvent={() => setOpenAddModal(false)}
+        />
+      )}
     </>
   );
 }

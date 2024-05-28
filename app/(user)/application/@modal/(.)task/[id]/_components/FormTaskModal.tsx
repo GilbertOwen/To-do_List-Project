@@ -39,6 +39,7 @@ export default function FormTaskModal({ task }: { task: Task }) {
     const date = new Date();
     return `${date.getFullYear()}-0${date.getMonth() + 1}-${date.getDate()}`;
   };
+  const [isCompleted, setIsCompleted] = useState<boolean>(task.isComplete as boolean);
   useEffect(() => {
     if (state.status === "success") {
       toast({
@@ -136,7 +137,7 @@ export default function FormTaskModal({ task }: { task: Task }) {
               }}
               className="border-2 p-1 rounded-md uppercase font-semibold cursor-pointer"
             />
-            <div className="flex flex-row w-full gap-x-2 border-2 p-1 rounded-md items-center overflow-hidden">
+            <div className="flex flex-row w-full gap-x-2 border-2 p-1 justify-center rounded-md items-center overflow-hidden">
               <span
                 className={`${handlePriority(priority)} w-[20px] h-[80%]`}
               ></span>
@@ -160,6 +161,22 @@ export default function FormTaskModal({ task }: { task: Task }) {
                   High
                 </option>
               </select>
+            </div>
+            <div className={`flex flex-row w-full z-[10] border-2 rounded-md items-center overflow-hidden transition-all ${isCompleted ? 'bg-green-400' : ''}`}>
+              <input
+                id="isComplete"
+                name="isComplete"
+                type="checkbox"
+                checked={isCompleted}
+                className="text-green-600 hidden bg-gray-100 border-gray-300 rounded checked:accent-green-400"
+              />
+              <label
+                htmlFor="isComplete"
+                className={`text-sm font-semibold select-none cursor-pointer h-full flex flex-col items-start justify-center ${isCompleted ? 'text-white' : 'text-gray-900'} w-full  px-2 py-1 dark:text-gray-300`}
+                onClick={()=> {setIsCompleted(!isCompleted); setIsChanged(true)}}
+              >
+                {isCompleted ? 'Completed' : 'Not Completed'}
+              </label>
             </div>
           </div>
           {state.errors?.deadline_at && (

@@ -36,7 +36,7 @@ export default function UpcomingSet() {
         >
           See what you've been scheduled before and customize it
         </p>
-        <div className="flex flex-col">
+        <div className="flex flex-col mb-4">
           <div className="flex flex-row items-center justify-end gap-x-4">
             <span>High Priority</span>
             <span className="w-[20px] h-[10px] bg-red-400"></span>

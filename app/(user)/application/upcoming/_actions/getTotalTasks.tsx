@@ -66,6 +66,28 @@ export default async function getTotalTasks(
         },
         orderBy: { priority: "desc" },
       });
+    }else if (sortBy === "uncompleted") {
+      tasks = await prisma.task.count({
+        where: {
+          userId: session?.id,
+          deadline_at: {
+            gte: now,
+            lte: end,
+          },
+        },
+        orderBy: { isComplete: "asc" },
+      });
+    } else if (sortBy === "completed") {
+      tasks = await prisma.task.count({
+        where: {
+          userId: session?.id,
+          deadline_at: {
+            gte: now,
+            lte: end,
+          },
+        },
+        orderBy: { isComplete: 'desc' },
+      });
     }
     return tasks;
   } catch (error) {

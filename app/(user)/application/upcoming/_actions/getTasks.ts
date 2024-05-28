@@ -25,8 +25,7 @@ export default async function getTasks(
 
     now.setDate(1); // Set hours, minutes, seconds, and milliseconds to 0
     end = new Date(now);
-    end.setDate(26);
-
+    end.setMonth(now.getMonth() + 1);
     if (sortBy === "aToZ") {
       tasks = await prisma.task.findMany({
         skip: currentPage * 4 - 4,
@@ -79,8 +78,33 @@ export default async function getTasks(
         },
         orderBy: { priority: "desc" },
       });
+    } else if (sortBy === "uncompleted") {
+      tasks = await prisma.task.findMany({
+        skip: currentPage * 4 - 4,
+        take: 4,
+        where: {
+          userId: session?.id,
+          deadline_at: {
+            gte: now,
+            lte: end,
+          },
+        },
+        orderBy: { isComplete: "asc" },
+      });
+    } else if (sortBy === "completed") {
+      tasks = await prisma.task.findMany({
+        skip: currentPage * 4 - 4,
+        take: 4,
+        where: {
+          userId: session?.id,
+          deadline_at: {
+            gte: now,
+            lte: end,
+          },
+        },
+        orderBy: { isComplete: "desc" },
+      });
     }
-    console.log(tasks);
     return tasks;
   } catch (error) {
     throw error;
