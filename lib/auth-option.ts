@@ -1,13 +1,12 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { getDocs, query, where } from "firebase/firestore";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { db } from "./firebase";
+import { colRef } from "./firebase";
 const bcrypt = require("bcrypt");
 
-const getCredential = async (email: string) => {
+export const getCredential = async (email: string) => {
   try {
-    const colRef = collection(db, "users");
-    const q = query(colRef, where("email", "==", email));
+    const q = query(colRef("users"), where("email", "==", email));
     const querySnapshot = await getDocs(q);
     if (querySnapshot.empty) {
       return null;
