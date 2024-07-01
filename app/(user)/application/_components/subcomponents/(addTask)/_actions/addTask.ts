@@ -1,5 +1,4 @@
 "use server";
-import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 const startOfToday = () => {
@@ -31,9 +30,9 @@ export default async function addTask(prevState: any, e: FormData) {
     taskSchema.parse(task);
     console.log(task)
 
-    await prisma.task.create({
-      data: task,
-    });
+    // await prisma.task.create({
+    //   data: task,
+    // });
 
     revalidatePath('/application')
     revalidatePath('/application/inbox')
