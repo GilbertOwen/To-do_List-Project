@@ -1,5 +1,7 @@
 "use server";
-import prisma from "@/lib/db";
+import { getCredential } from "@/lib/auth-option";
+import { colRef } from "@/lib/firebase";
+import { Timestamp, addDoc } from "firebase/firestore";
 import { z } from "zod";
 const bcrypt = require("bcrypt");
 const registerSchema = z.object({
@@ -11,21 +13,29 @@ const registerSchema = z.object({
 export default async function registerUser(prevState: any, formData: FormData) {
   try {
     const userData = {
-        username: String(formData.get("username")),
-        email: String(formData.get("email")),
-        password: String(formData.get("password")),
-    }
+      username: String(formData.get("username")),
+      email: String(formData.get("email")),
+      password: String(formData.get("password")),
+    };
     registerSchema.parse(userData);
-    if(await prisma.user.findUnique({where:{email:userData.email}})){
-      throw 'email'
+    userData.password = bcrypt.hashSync(userData.password, 10);
+    if (await getCredential(userData.email)) {
+      throw "email";
     }
-    await prisma.user.create({
-        data:{
-            username:userData.username,
-            email:userData.email,
-            password:bcrypt.hashSync(userData.password,10)
-        }
-    })
+    // await prisma.user.create({
+    //   data: {
+    //     username: userData.username,
+    //     email: userData.email,
+    //     password: bcrypt.hashSync(userData.password, 10),
+    //   },
+    // });
+    await addDoc(colRef("users"), {
+      biodata: "",
+      createdAt: Timestamp.now(),
+      updatedAt: Timestamp.now(),
+      ...userData,
+      profilePicture: "",
+    });
 
     return {
       message: "User registered successfully",
@@ -33,12 +43,12 @@ export default async function registerUser(prevState: any, formData: FormData) {
     };
   } catch (error: any) {
     const errors: any = {};
-    if(error != 'email'){
+    if (error != "email") {
       error?.errors?.map((err: any) => {
         errors[err.path[0]] = err.message;
       });
-    }else{
-      errors.email = 'Email has already been registered'
+    } else {
+      errors.email = "Email has already been registered";
     }
     return {
       message: "User failed to be registered",

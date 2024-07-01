@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { CgProfile } from "react-icons/cg";
 import { TiArrowSortedDown } from "react-icons/ti";
-import type { User } from "@prisma/client";
 import {
   FaCalendarAlt,
   FaInbox,
@@ -12,13 +11,18 @@ import {
   FaSearch,
   FaSignOutAlt,
 } from "react-icons/fa";
-import { IoMdArrowDropleft, IoMdHome } from "react-icons/io";
+import { IoMdHome } from "react-icons/io";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import AddTaskModal from "./subcomponents/(addTask)/AddTaskModal";
 
-export default function SidebarApp({ user }: { user: User }) {
+export default function SidebarApp({ user }: { user: any }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
 
@@ -52,7 +56,7 @@ export default function SidebarApp({ user }: { user: User }) {
           scale: [1, 0.4, 1],
         }}
         transition={{
-          duration: 1,
+          duration: 0.5,
           ease: "easeIn",
         }}
         whileHover={{
@@ -67,14 +71,15 @@ export default function SidebarApp({ user }: { user: User }) {
           isOpen ? "hidden" : "flex"
         } shadow-[4px_4px_7px_rgba(90, 90, 90, 0.25)] group scale-100 hover:scale-95 hover:shadow-md lg:right-8 z-[100] bg-[black] p-2 rounded-md cursor-pointer transition-all`}
       >
-        {user.profilePicture?.length ? (
+        {user.profilePicture && !imageError ? (
           <Image
             src={`/${user.profilePicture}`}
             width={25}
             height={25}
-            className="w-[25px] h-[25px] object-cover rounded-full drop-shadow-[0_0px_10px_rgba(255,255,255,255.25)] shadow-white "
-            alt={""}
-          ></Image>
+            className="w-[25px] h-[25px] object-cover rounded-full drop-shadow-[0_0px_10px_rgba(255,255,255,255.25)] shadow-white"
+            alt="Profile Picture"
+            onError={handleImageError}
+          />
         ) : (
           <CgProfile size={30} color="white" />
         )}
@@ -84,121 +89,146 @@ export default function SidebarApp({ user }: { user: User }) {
           isOpen
             ? "left-8  opacity-100 transition-all"
             : "left-[-100%] opacity-0 transition-all"
-        }} rounded-[8px] flex flex-col w-fit z-[100] pr-[24px] pl-6 pt-[24px] pb-[80px] fixed top-8 bg-black py-4 px-2 transition-all gap-y-[24px]`}
+        }} rounded-[8px] flex flex-col w-fit z-[100] pr-[24px] pl-6 pt-[24px] pb-[24px] fixed top-8 bg-black py-4 px-2 transition-all gap-y-[16px]`}
         id="sidebarApp"
       >
         <li
-          className={`flex flex-row items-center justify-between cursor-pointer select-none group ${
+          className={`flex flex-row items-center group bg-black rounded-md hover:bg-white p-2 justify-between cursor-pointer select-none group ${
             openDropdownProfile ? "mb-[0px]" : "mb-[12px]"
           }`}
           onClick={() => setOpenDropdownProfile(!openDropdownProfile)}
         >
           <div className="flex flex-row items-center gap-x-6 mr-4">
-            <Image
-              src={`/${user.profilePicture}`}
-              width={30}
-              height={40}
-              className="w-[30px] h-[30px] object-cover rounded-full"
-              alt={""}
-            ></Image>
-            <span className="text-white font-semibold text-[20px] group-hover:opacity-80">
-              {user.username}
+            {user.profilePicture && !imageError ? (
+              <Image
+                src={`/${user.profilePicture}`}
+                width={25}
+                height={25}
+                className="w-[25px] h-[25px] object-cover rounded-full drop-shadow-[0_0px_10px_rgba(255,255,255,255.25)] shadow-white"
+                alt="Profile Picture"
+                onError={handleImageError}
+              />
+            ) : (
+              <CgProfile
+                size={30}
+                className="group-hover:text-black text-white transition-all"
+              />
+            )}
+            <span className="text-white font-semibold text-[20px] group-hover:text-black transition-all">
+              {user.username.substring(0,6)}{user.username.length == 6 ? '' : '...'}
             </span>
           </div>
           {openDropdownProfile ? (
             <TiArrowSortedDown
-              className="group-hover:opacity-80"
+              className=" group-hover:text-black text-white transition-all"
               size={20}
-              color="white"
             />
           ) : (
             <TiArrowSortedDown
-              className="group-hover:opacity-80 rotate-[90deg]"
+              className=" group-hover:text-black text-white rotate-[90deg] transition-all"
               size={20}
-              color="white"
             />
           )}
         </li>
         <li
           className={`${
-            openDropdownProfile ? "flex" : "hidden"
-          } text-white text-[16px] font-semibold group`}
+            openDropdownProfile ? "flex" : "hidden invisible"
+          } w-full overflow-hidden`}
         >
           <Link
             href={"/application/profile"}
-            className="hover:opacity-80 flex flex-row items-center gap-x-6"
+            className={`${
+              openDropdownProfile ? "flex" : "hidden invisible"
+            } ml-14 p-2 hover:bg-white bg-black w-full text-white font-semibold rounded-md hover:text-black transition-all text-[16px]`}
           >
-            <CgProfile size={30} color="white" />
-            <span>Profile</span>
+            Profile
           </Link>
         </li>
         <li
-          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          className="flex p-2 hover:bg-white rounded-md flex-row items-center gap-x-6 cursor-pointer group transition-all"
           onClick={() => {
             setIsOpen(false);
             setOpenAddModal(true);
           }}
         >
-          <FaPlus size={28} color="white" />
+          <FaPlus
+            size={28}
+            className="group-hover:text-black text-white transition-all"
+          />
 
-          <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
+          <span className="text-white font-semibold group-hover:text-black transition-all text-[16px]">
             Task
           </span>
         </li>
         <Link
-          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          className="flex p-2 hover:bg-white rounded-md flex-row items-center gap-x-6 cursor-pointer group transition-all"
           onClick={() => setIsOpen(false)}
           href={"/application/dashboard"}
         >
-          <IoMdHome size={28} color="white" />
+          <IoMdHome
+            size={28}
+            className="group-hover:text-black text-white transition-all"
+          />
 
-          <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
+          <span className="text-white font-semibold group-hover:text-black transition-all text-[16px]">
             Home
           </span>
         </Link>
         <Link
-          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          className="flex p-2 hover:bg-white rounded-md flex-row items-center gap-x-6 cursor-pointer group transition-all"
           onClick={() => setIsOpen(false)}
           href={"/application/inbox"}
         >
-          <FaInbox size={28} color="white" />
+          <FaInbox
+            size={28}
+            className="group-hover:text-black text-white transition-all"
+          />
 
-          <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
+          <span className="text-white font-semibold group-hover:text-black transition-all text-[16px]">
             Inbox
           </span>
         </Link>
         <Link
-          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          className="flex p-2 hover:bg-white rounded-md flex-row items-center gap-x-6 cursor-pointer group transition-all"
           onClick={() => setIsOpen(false)}
           href={""}
         >
-          <FaSearch size={28} color="white" />
+          <FaSearch
+            size={28}
+            className="group-hover:text-black text-white transition-all"
+          />
 
-          <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
+          <span className="text-white font-semibold group-hover:text-black transition-all text-[16px]">
             Find Task
           </span>
         </Link>
         <Link
-          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          className="flex p-2 hover:bg-white rounded-md flex-row items-center gap-x-6 cursor-pointer group transition-all"
           onClick={() => setIsOpen(false)}
           href={"/application/upcoming"}
         >
-          <FaCalendarAlt size={28} color="white" />
+          <FaCalendarAlt
+            size={28}
+            className="group-hover:text-black text-white transition-all"
+          />
 
-          <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
+          <span className="text-white font-semibold group-hover:text-black transition-all text-[16px]">
             Upcoming
           </span>
         </Link>
         <li
-          className="flex flex-row items-center gap-x-6 cursor-pointer group"
+          className="flex p-2 hover:bg-white rounded-md flex-row items-center gap-x-6 cursor-pointer group transition-all"
           onClick={() => {
             signOut();
             setIsOpen(false);
           }}
         >
-          <FaSignOutAlt size={28} color="white" />
+          <FaSignOutAlt
+            size={28}
+            className="group-hover:text-black text-white transition-all"
+          />
 
-          <span className="text-white font-medium group-hover:opacity-80 text-[16px]">
+          <span className="text-white font-semibold group-hover:text-black transition-all text-[16px]">
             Sign Out
           </span>
         </li>
