@@ -1,11 +1,28 @@
+import { collection, getDocs, query, where } from "firebase/firestore";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import prisma from "./db";
+import { db } from "./firebase";
 const bcrypt = require("bcrypt");
+
+const getCredential = async (email: string) => {
+  try {
+    const colRef = collection(db, "users");
+    const q = query(colRef, where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.empty) {
+      return null;
+    }
+    const doc = querySnapshot.docs[0];
+    const user = doc.data();
+    return { ...user, id: doc.id };
+  } catch (err) {
+    return null;
+  }
+};
 
 export const authOptions: NextAuthOptions = {
   session: {
-    maxAge: 60*60*24,
+    maxAge: 60 * 60 * 24,
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
@@ -28,10 +45,15 @@ export const authOptions: NextAuthOptions = {
           email: string;
           password: string;
         };
-        const user:any = await prisma.user.findUnique({ where: { email:email } });
+        const user: any = await getCredential(email);
         if (user) {
-          const passwordMatch = await bcrypt.compareSync(password, user.password);
-          if (!passwordMatch) {return null};
+          const passwordMatch = await bcrypt.compareSync(
+            password,
+            user.password
+          );
+          if (!passwordMatch) {
+            return null;
+          }
           return user;
         } else {
           return null;
